@@ -20,17 +20,35 @@ def main():
         api_secret=os.getenv('BINANCE_API_SECRET')
     )
     
+    # Login to X
+    if not x_monitor.login(
+        username=os.getenv('X_USERNAME'),
+        password=os.getenv('X_PASSWORD')
+    ):
+        print("Failed to login to X. Exiting...")
+        return
+    
     try:
         while True:
-            # Check X notifications
-            tweet = x_monitor.check_notifications()
+            # Check X feed for new listings
+            tweet_info = x_monitor.check_notifications()
             
-            if tweet:
-                # Process the tweet and execute trading strategy
-                if trading_strategy.should_trade():
-                    # Get position size and execute trade
-                    position_size = trading_strategy.get_position_size()
-                    binance_trader.execute_trade(position_size)
+            if tweet_info:
+                print(f"\nNew cryptocurrency news detected at {tweet_info['timestamp']}")
+                print(f"Source: {tweet_info['source']}")
+                print(f"Content: {tweet_info['content']}")
+                print(f"Coins mentioned: {', '.join(tweet_info['coins'])}")
+                
+                # Process each mentioned coin
+                for coin in tweet_info['coins']:
+                    # Process the tweet and execute trading strategy
+                    if trading_strategy.should_trade():
+                        # Get position size and execute trade
+                        position_size = trading_strategy.get_position_size()
+                        binance_trader.execute_trade(
+                            symbol=f"{coin}USDT",
+                            position_size=position_size
+                        )
             
             # Wait before next check
             time.sleep(60)  # Check every minute
