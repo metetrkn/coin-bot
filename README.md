@@ -1,10 +1,10 @@
 # Coin Trade Bot
 
-A cryptocurrency trading bot that monitors Coinbase Pro Twitter notifications and executes trades on Binance.
+A cryptocurrency trading bot that monitors Coinbase Pro X notifications and executes trades on Binance.
 
 ## Features
 
-- Monitors Coinbase Pro Twitter feed for new coin listings
+- Monitors Coinbase Pro X feed for new coin listings
 - Automatically executes trades on Binance
 - Custom trading strategy implementation
 - Secure credential management using environment variables
@@ -21,6 +21,7 @@ coin-trade-bot/
 │       ├── browser_manager.py
 │       ├── trading_strategy.py
 │       ├── binance_trader.py
+│       ├── x_monitor.py
 │       └── test_env.py
 ├── .env.example
 ├── .env
@@ -34,7 +35,7 @@ coin-trade-bot/
 - Python 3.13 or higher
 - Poetry (Python package manager)
 - Binance account with API access
-- Twitter account (for monitoring Coinbase Pro)
+- X account (for monitoring Coinbase Pro)
 
 ## Installation
 
@@ -66,7 +67,7 @@ poetry install
 5. Set up environment variables:
    - Copy `.env.example` to `.env` and update the values:
 ```
-# X (Twitter) API Credentials
+# X API Credentials
 X_API_KEY=your_x_api_key_here
 X_API_SECRET=your_x_api_secret_here
 X_ACCESS_TOKEN=your_x_access_token_here
@@ -76,14 +77,14 @@ X_ACCESS_SECRET=your_x_access_secret_here
 BINANCE_API_KEY=your_binance_api_key_here
 BINANCE_API_SECRET=your_binance_api_secret_here
 
-# Trading Configuration
-TRADE_AMOUNT_USD=100          # Amount to trade in USD
-STOP_LOSS_PERCENTAGE=5        # Stop loss percentage
-TAKE_PROFIT_PERCENTAGE=10     # Take profit percentage
-MAX_TRADES=3                  # Maximum number of concurrent trades
-MIN_VOLUME_USD=1000000       # Minimum 24h volume in USD to consider a coin
-PRICE_CHANGE_THRESHOLD=5      # Minimum price change percentage to trigger a trade
-COOLDOWN_MINUTES=30          # Minutes to wait between trades
+# Trading Strategy Configuration
+POSITION_SIZE_MULTIPLIER=your_position_size_multiplier_here        # Example: 0.1 for 10% of available balance
+TAKE_PROFIT_PERCENTAGE=your_take_profit_percentage_here           # Example: 5 for 5% take profit
+STOP_LOSS_PERCENTAGE=your_stop_loss_percentage_here               # Example: 2 for 2% stop loss
+MAX_TRADES=your_max_trades_here                                   # Example: 3 for maximum concurrent trades
+MIN_VOLUME_USD=your_min_volume_usd_here                          # Example: 1000000 for minimum 24h volume in USD
+PRICE_CHANGE_THRESHOLD=your_price_change_threshold_here           # Example: 5 for 5% minimum price change
+COOLDOWN_MINUTES=your_cooldown_minutes_here                      # Example: 30 for minutes between trades
 ```
 
 ## Usage
@@ -108,7 +109,7 @@ poetry run python src/coin_trade_bot/main.py
 All configuration is done through the `.env` file. No code modification is required. The following parameters can be adjusted:
 
 ```env
-# X (Twitter) API Credentials
+# X API Credentials
 X_API_KEY=your_x_api_key_here
 X_API_SECRET=your_x_api_secret_here
 X_ACCESS_TOKEN=your_x_access_token_here
@@ -118,14 +119,14 @@ X_ACCESS_SECRET=your_x_access_secret_here
 BINANCE_API_KEY=your_binance_api_key_here
 BINANCE_API_SECRET=your_binance_api_secret_here
 
-# Trading Configuration
-TRADE_AMOUNT_USD=100          # Amount to trade in USD
-STOP_LOSS_PERCENTAGE=5        # Stop loss percentage
-TAKE_PROFIT_PERCENTAGE=10     # Take profit percentage
-MAX_TRADES=3                  # Maximum number of concurrent trades
-MIN_VOLUME_USD=1000000       # Minimum 24h volume in USD to consider a coin
-PRICE_CHANGE_THRESHOLD=5      # Minimum price change percentage to trigger a trade
-COOLDOWN_MINUTES=30          # Minutes to wait between trades
+# Trading Strategy Configuration
+POSITION_SIZE_MULTIPLIER=your_position_size_multiplier_here        # Example: 0.1 for 10% of available balance
+TAKE_PROFIT_PERCENTAGE=your_take_profit_percentage_here           # Example: 5 for 5% take profit
+STOP_LOSS_PERCENTAGE=your_stop_loss_percentage_here               # Example: 2 for 2% stop loss
+MAX_TRADES=your_max_trades_here                                   # Example: 3 for maximum concurrent trades
+MIN_VOLUME_USD=your_min_volume_usd_here                          # Example: 1000000 for minimum 24h volume in USD
+PRICE_CHANGE_THRESHOLD=your_price_change_threshold_here           # Example: 5 for 5% minimum price change
+COOLDOWN_MINUTES=your_cooldown_minutes_here                      # Example: 30 for minutes between trades
 ```
 
 Simply copy `.env.example` to `.env` and adjust these values according to your trading preferences. The bot will automatically use these settings without requiring any code changes.
