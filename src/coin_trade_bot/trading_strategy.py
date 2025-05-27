@@ -1,13 +1,24 @@
 """Trading strategy module for the trading bot."""
+import os
+from dotenv import load_dotenv
 from .market_analyzer import MarketAnalyzer
 from typing import Dict, Optional
 
 class TradingStrategy:
     def __init__(self):
+        # Load environment variables
+        load_dotenv()
+        
         self.market_analyzer = MarketAnalyzer()
-        self.position_size_multiplier = 0.1  # 10% of available balance
-        self.take_profit_percentage = 0.05   # 5% take profit
-        self.stop_loss_percentage = 0.02     # 2% stop loss
+        
+        # Read configuration from environment variables with defaults
+        self.position_size_multiplier = float(os.getenv('POSITION_SIZE_MULTIPLIER', '0.1'))  # Default 10% of available balance
+        self.take_profit_percentage = float(os.getenv('TAKE_PROFIT_PERCENTAGE', '5')) / 100  # Convert percentage to decimal
+        self.stop_loss_percentage = float(os.getenv('STOP_LOSS_PERCENTAGE', '2')) / 100  # Convert percentage to decimal
+        self.max_trades = int(os.getenv('MAX_TRADES', '3'))
+        self.min_volume_usd = float(os.getenv('MIN_VOLUME_USD', '1000000'))
+        self.price_change_threshold = float(os.getenv('PRICE_CHANGE_THRESHOLD', '5')) / 100
+        self.cooldown_minutes = int(os.getenv('COOLDOWN_MINUTES', '30'))
         
     def get_position_size(self) -> float:
         """
