@@ -1,8 +1,8 @@
-# main.py
-from browser_manager import BrowserManager
-from twitter_monitor import TwitterMonitor
-from binance_trader import BinanceTrader
-from trading_strategy import TradingStrategy
+"""Main module for the trading bot."""
+from .browser_manager import BrowserManager
+from .twitter_monitor import TwitterMonitor
+from .binance_trader import BinanceTrader
+from .trading_strategy import TradingStrategy
 import datetime
 import time
 import os
@@ -95,4 +95,4 @@ def main():
         time.sleep(60)  # Check every minute
 
 if __name__ == "__main__":
-    main()
+    main() 

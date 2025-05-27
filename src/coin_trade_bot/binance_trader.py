@@ -1,3 +1,4 @@
+"""Binance trading module for the trading bot."""
 from binance.client import Client
 from binance.exceptions import BinanceAPIException
 import time
@@ -6,11 +7,12 @@ from typing import Dict, Optional
 class BinanceTrader:
     def __init__(self, api_key: str = "", api_secret: str = ""):
         """
-        Initialize Binance client
+        Initialize Binance client with testnet
         :param api_key: Binance API key
         :param api_secret: Binance API secret
         """
-        self.client = Client(api_key, api_secret)
+        # Initialize client with testnet
+        self.client = Client(api_key, api_secret, testnet=True)
         
     def get_market_data(self, coin: str) -> Dict[str, float]:
         """
@@ -46,7 +48,7 @@ class BinanceTrader:
                    order_type: str = "MARKET",
                    price: Optional[float] = None) -> Dict:
         """
-        Place an order on Binance
+        Place an order on Binance testnet
         :param symbol: Trading pair symbol (e.g., 'BTCUSDT')
         :param side: 'BUY' or 'SELL'
         :param quantity: Amount to trade
@@ -74,7 +76,7 @@ class BinanceTrader:
 
     def get_account_balance(self) -> Dict[str, float]:
         """
-        Get account balance for all assets
+        Get account balance for all assets on testnet
         :return: Dictionary of asset balances
         """
         try:
