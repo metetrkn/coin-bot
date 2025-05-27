@@ -1,22 +1,20 @@
-[project]
+[tool.poetry]
 name = "coin-trade-bot"
 version = "0.1.0"
-description = "A cryptocurrency trading bot that monitors Coinbase Pro Twitter notifications and executes trades on Binance"
+description = "A cryptocurrency trading bot that monitors Coinbase Pro X notifications and executes trades on Binance"
 authors = [
     {name = "metetrkn",email = "metetrkn52@gmail.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.10,<3.14"
-dependencies = [
-    "python-binance>=1.0.19",
-    "python-dotenv>=1.0.0",
-    "beautifulsoup4>=4.12.2",
-    "lxml>=4.9.3",
-    "selenium>=4.15.2",
-    "webdriver-manager>=4.0.1"
-]
 
+[tool.poetry.dependencies]
+python = "^3.13"
+selenium = "^4.18.1"
+python-dotenv = "^1.0.1"
+requests = "^2.31.0"
+beautifulsoup4 = "^4.12.3"
+lxml = "^5.1.0"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

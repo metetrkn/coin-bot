@@ -1,5 +1,5 @@
 """
-Coin Trade Bot - A cryptocurrency trading bot that monitors Coinbase Pro Twitter notifications
+Coin Trade Bot - A cryptocurrency trading bot that monitors Coinbase Pro X notifications
 and executes trades on Binance.
 """
 
