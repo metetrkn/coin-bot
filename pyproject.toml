@@ -2,10 +2,7 @@
 name = "coin-trade-bot"
 version = "0.1.0"
 description = "A cryptocurrency trading bot that monitors Coinbase Pro X notifications and executes trades on Binance"
-authors = [
-    {name = "metetrkn",email = "metetrkn52@gmail.com"}
-]
-readme = "README.md"
+authors = ["metetrkn <metetrkn52@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.13"
