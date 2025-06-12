@@ -4,6 +4,7 @@ from binance.exceptions import BinanceAPIException
 import time
 from typing import Dict, Optional
 
+#   BinanceTrader class for interacting with Binance API
 class BinanceTrader:
     def __init__(self, api_key: str = "", api_secret: str = ""):
         """
